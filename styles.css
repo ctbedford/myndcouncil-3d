@@ -1,0 +1,417 @@
+/* ==========================================
+   MYNDCOUNCIL 3D STYLES
+   Sacred Temple Interface
+   ========================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: #000;
+    cursor: grab;
+    user-select: none;
+}
+
+body:active {
+    cursor: grabbing;
+}
+
+#canvas {
+    width: 100%;
+    height: 100vh;
+    display: block;
+    outline: none;
+}
+
+/* ==========================================
+   LOADING SCREEN
+   ========================================== */
+
+.loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.5s ease-out;
+}
+
+.loading-spinner {
+    font-size: 64px;
+    animation: pulse 2s ease-in-out infinite;
+    margin-bottom: 20px;
+}
+
+.loading-text {
+    color: #FFD700;
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.loading-subtext {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    letter-spacing: 2px;
+    animation: fadeInOut 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.1); opacity: 1; }
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.9; }
+}
+
+/* ==========================================
+   MAIN UI PANEL
+   ========================================== */
+
+#ui {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 25px;
+    border-radius: 15px;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    max-width: 320px;
+    z-index: 100;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    transition: all 0.3s ease;
+}
+
+#ui:hover {
+    border-color: rgba(255, 215, 0, 0.6);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.8);
+}
+
+#ui h2 {
+    margin: 0 0 15px 0;
+    color: #FFD700;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+#ui p {
+    margin: 5px 0;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.description {
+    font-size: 14px;
+    opacity: 0.8;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+/* ==========================================
+   CONTROLS SECTION
+   ========================================== */
+
+.controls {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.control-item {
+    margin: 8px 0;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+}
+
+.control-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(5px);
+}
+
+.control-icon {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+}
+
+/* ==========================================
+   BUTTON STYLES
+   ========================================== */
+
+.button-group {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+button {
+    background: rgba(255, 215, 0, 0.1);
+    color: #FFD700;
+    border: 1px solid rgba(255, 215, 0, 0.5);
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 500;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+button:hover {
+    background: rgba(255, 215, 0, 0.2);
+    border-color: #FFD700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+button:hover::before {
+    left: 100%;
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* ==========================================
+   THINKER SELECTION INFO
+   ========================================== */
+
+#selected-info {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 30px 40px;
+    border-radius: 15px;
+    text-align: center;
+    display: none;
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    z-index: 100;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.8);
+    animation: slideUp 0.4s ease-out;
+    max-width: 500px;
+    position: relative;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateX(-50%) translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+}
+
+#selected-info h3 {
+    margin: 0 0 15px 0;
+    font-size: 32px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: #FFD700;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+#selected-info .role {
+    color: #4169E1;
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 400;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+}
+
+#selected-info .question {
+    font-style: italic;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+    margin-top: 15px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.close-btn:hover {
+    color: #FFD700;
+    background: rgba(255, 215, 0, 0.2);
+    transform: scale(1.1);
+}
+
+/* ==========================================
+   PERFORMANCE STATS
+   ========================================== */
+
+#performance-stats {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 15px;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    z-index: 90;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#performance-stats div {
+    margin: 3px 0;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+
+@media (max-width: 768px) {
+    #ui {
+        max-width: 280px;
+        padding: 20px;
+        font-size: 14px;
+    }
+    
+    #ui h2 {
+        font-size: 24px;
+    }
+    
+    .controls {
+        font-size: 12px;
+    }
+    
+    button {
+        font-size: 11px;
+        padding: 10px 15px;
+    }
+    
+    #selected-info {
+        max-width: 90%;
+        padding: 25px 30px;
+        bottom: 20px;
+    }
+    
+    #selected-info h3 {
+        font-size: 28px;
+    }
+    
+    #selected-info .question {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    #ui {
+        max-width: 250px;
+        padding: 15px;
+    }
+    
+    #performance-stats {
+        font-size: 10px;
+        padding: 10px;
+    }
+}
+
+/* ==========================================
+   ACCESSIBILITY
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus states for accessibility */
+button:focus,
+.close-btn:focus {
+    outline: 2px solid #FFD700;
+    outline-offset: 2px;
+}
+
+/* ==========================================
+   CUSTOM SCROLLBAR (if needed)
+   ========================================== */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 215, 0, 0.5);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 215, 0, 0.7);
+}
+

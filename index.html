@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyndCouncil 3D Sacred Temple</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="loading" id="loading">
+        <div class="loading-spinner">🏛️</div>
+        <div class="loading-text">CONSTRUCTING SACRED SPACE</div>
+        <div class="loading-subtext">Invoking the Council...</div>
+    </div>
+    
+    <canvas id="canvas"></canvas>
+    
+    <div id="ui">
+        <h2>MYNDCOUNCIL</h2>
+        <p><strong>The Sacred Temple of Thought</strong></p>
+        <p class="description">Seven thinkers await your consultation in this living architecture of consciousness.</p>
+        
+        <div class="controls">
+            <div class="control-item">
+                <span class="control-icon">🖱️</span>
+                <span>Drag to rotate temple</span>
+            </div>
+            <div class="control-item">
+                <span class="control-icon">📍</span>
+                <span>Right-click to pan</span>
+            </div>
+            <div class="control-item">
+                <span class="control-icon">🔍</span>
+                <span>Scroll to zoom</span>
+            </div>
+            <div class="control-item">
+                <span class="control-icon">✨</span>
+                <span>Click orbs to consult</span>
+            </div>
+        </div>
+        
+        <div class="button-group">
+            <button onclick="toggleParticles()">✨ TOGGLE THOUGHT PARTICLES</button>
+            <button onclick="toggleConnections()">🔗 TOGGLE SACRED GEOMETRY</button>
+            <button onclick="toggleAnimation()">🌊 TOGGLE ANIMATIONS</button>
+            <button onclick="activateAllThinkers()">🏛️ SUMMON FULL COUNCIL</button>
+            <button onclick="resetView()">🎯 RESET VIEW</button>
+        </div>
+    </div>
+    
+    <div id="selected-info">
+        <h3 id="thinker-name"></h3>
+        <div class="role" id="thinker-role"></div>
+        <div class="question" id="thinker-question"></div>
+        <div class="close-btn" onclick="closeSelection()">×</div>
+    </div>
+
+    <div id="performance-stats">
+        <div id="fps">FPS: --</div>
+        <div id="objects">Objects: --</div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/council-data.js"></script>
+    <script src="js/scene-manager.js"></script>
+    <script src="js/interaction-manager.js"></script>
+    <script src="js/animation-manager.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
+

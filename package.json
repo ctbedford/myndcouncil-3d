@@ -1,0 +1,55 @@
+{
+  "name": "myndcouncil-3d",
+  "version": "1.0.0",
+  "description": "A stunning 3D visualization of the MyndCouncil - your personal council of great thinkers rendered as a living, breathing sacred temple in Three.js.",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve . -p 3000",
+    "dev": "npx live-server --port=3000 --open=/",
+    "build": "echo 'No build step needed for vanilla JS project'",
+    "test": "echo 'No tests specified yet'",
+    "lint": "npx eslint js/ --ext .js",
+    "format": "npx prettier --write .",
+    "deploy": "gh-pages -d ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ctbedford/myndcouncil-3d.git"
+  },
+  "keywords": [
+    "3d",
+    "visualization",
+    "three.js",
+    "sacred-geometry",
+    "philosophy",
+    "council",
+    "thinkers",
+    "interactive",
+    "webgl",
+    "meditation",
+    "consciousness"
+  ],
+  "author": "Tyler Bedford",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ctbedford/myndcouncil-3d/issues"
+  },
+  "homepage": "https://ctbedford.github.io/myndcouncil-3d",
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "live-server": "^1.2.2",
+    "serve": "^14.2.0",
+    "gh-pages": "^6.0.0"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
+
