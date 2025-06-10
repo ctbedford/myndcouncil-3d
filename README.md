@@ -1,6 +1,6 @@
-# 🏛️ MyndCouncil 3D Sacred Temple
+# 🏛️ MyndCouncil 3D Council Hall
 
-A stunning 3D visualization of the MyndCouncil - your personal council of great thinkers rendered as a living, breathing sacred temple in Three.js.
+A stunning 3D visualization of the MyndCouncil - your personal council of great thinkers gathered in an immersive council hall built with Three.js.
 
 ## ✨ Features
 
@@ -14,16 +14,16 @@ A stunning 3D visualization of the MyndCouncil - your personal council of great 
 - **💡 Edison** - Execution and iteration (Orange Cone)
 - **🌳 Socrates** - Reflection and wisdom (Purple Sphere)
 
-### 🌟 **Interactive Sacred Geometry**
-- **Quantum Void Center** - You are at the center, the observer/creator
-- **Flower of Life Connections** - Sacred geometric patterns connect all thinkers
+### 🌟 **Council Hall Environment**
+- **Central Round Table** - The thinkers gather around one table
 - **Thought Particle Systems** - Flowing energy representing consciousness
-- **Sacred Floor Patterns** - Multiple concentric geometric forms
-- **Ambient Light Rings** - Rotating ethereal elements
+- **Warm Lighting** - Subtle ambient illumination for readability
 
 ### 🎮 **Interactive Controls**
 - **Mouse/Touch Navigation** - Drag to rotate, scroll to zoom
 - **Thinker Consultation** - Click on any orb to consult that thinker
+- **Floating Labels** - Each thinker displays a name tag above their orb
+- **Glass UI Panels** - Translucent controls with subtle blur
 - **Thought Flow Animation** - Particles flow from thinker to center when selected
 - **Full Council Summoning** - Activate all thinkers in sequence
 - **Real-time Toggles** - Control particles, connections, and animations
@@ -76,8 +76,8 @@ If you use VSCode:
 
 ## 🎮 **Controls & Interaction**
 
-### **Mouse/Touch Controls**
-- **Drag** - Rotate the temple around the center
+-### **Mouse/Touch Controls**
+- **Drag** - Rotate the hall around the center
 - **Scroll/Pinch** - Zoom in and out
 - **Click/Tap** - Select and consult a thinker
 - **Hover** - Highlight thinkers for interaction
@@ -85,14 +85,15 @@ If you use VSCode:
 ### **Keyboard Shortcuts**
 - **SPACE** - Summon the full council (sequential activation)
 - **P** - Toggle thought particles on/off
-- **C** - Toggle sacred geometry connections
+- **C** - Toggle connection lines
 - **A** - Toggle all animations
 - **R** - Reset camera view to default
 - **ESC** - Deselect current thinker
+- **1-8** - Quickly select thinkers by number
 
 ### **UI Buttons**
 - **✨ Toggle Thought Particles** - Show/hide floating consciousness
-- **🔗 Toggle Sacred Geometry** - Show/hide connection lines
+- **🔗 Toggle Connections** - Show/hide connection lines
 - **🌊 Toggle Animations** - Pause/resume all movement
 - **🏛️ Summon Full Council** - Activate all thinkers in sequence
 - **🎯 Reset View** - Return to default camera position
@@ -146,7 +147,7 @@ myndcouncil-3d/
 ├── styles.css              # Complete styling
 ├── README.md              # This documentation
 └── js/
-    ├── council-data.js     # Thinker configurations & sacred geometry
+    ├── council-data.js     # Thinker configurations & layout
     ├── scene-manager.js    # 3D scene creation & management
     ├── interaction-manager.js # User input & thinker selection
     ├── animation-manager.js   # All animations & effects
@@ -171,8 +172,8 @@ Edit `js/council-data.js` to add new council members:
 }
 ```
 
-### **Modifying Sacred Geometry**
-Adjust the `SACRED_CONNECTIONS` array to change how thinkers relate:
+### **Modifying Connections**
+Adjust the `CONNECTIONS` array to change how thinkers relate:
 
 ```javascript
 { from: 'newton', to: 'plato', type: 'natural_law', strength: 0.7 }
@@ -225,9 +226,9 @@ chaos: {
 
 ## 🌟 **Philosophy & Purpose**
 
-This isn't just a 3D visualization - it's a **living meditation on the nature of thought itself**. Each geometric form represents a different mode of consciousness, arranged in sacred patterns that reflect the deep structures of reality.
+This isn't just a 3D visualization - it's a **living meditation on the nature of thought itself**. Each thinker gathers around the council table, ready to offer guidance.
 
-The sacred geometry isn't decorative - it's **functional**. The Flower of Life pattern connects thinkers in meaningful relationships. The central void represents **you** - the observer who collapses quantum possibilities into concrete decisions.
+The connections between them represent their shared wisdom. The space in the center is **you** - the observer who turns insight into action.
 
 When you consult a thinker, you're not just clicking a button - you're **invoking a mode of consciousness**. The particle flows represent thoughts moving from archetypal forms into your personal awareness.
 
@@ -244,7 +245,6 @@ When you consult a thinker, you're not just clicking a button - you're **invokin
 ## 📜 **Credits**
 
 - **Three.js** - WebGL 3D library
-- **Sacred Geometry** - Based on Flower of Life and Platonic solids
 - **Typography** - System fonts for universal compatibility
 - **Philosophy** - Inspired by the eternal forms and archetypal thinking
 
@@ -252,5 +252,5 @@ When you consult a thinker, you're not just clicking a button - you're **invokin
 
 **🔮 May your consultations bring clarity, and your decisions reflect the wisdom of the ages.**
 
-*Built with reverence for the sacred patterns that underlie all thought and form.*
+*Built to inspire reflection and meaningful action.*
 

@@ -1,11 +1,11 @@
 /**
  * ==========================================
  * MYNDCOUNCIL DATA CONFIGURATION
- * Sacred Temple Council Members
+ * Council Hall Members
  * ==========================================
  */
 
-// Council member configuration with sacred geometry
+// Council member configuration and layout
 const COUNCIL_DATA = [
     {
         id: 'plato',
@@ -13,7 +13,7 @@ const COUNCIL_DATA = [
         role: 'Eternal Forms & Truth',
         question: 'What eternal truth emerges from this moment?',
         description: 'The seeker of ideal forms and universal truths that transcend material reality.',
-        position: { x: 0, y: 6, z: 0 },
+        position: { x: 5, y: 1, z: 0 },
         color: 0xFFD700,
         emissive: 0xFFD700,
         geometry: 'octahedron',
@@ -27,7 +27,7 @@ const COUNCIL_DATA = [
         role: 'Analysis & Categorization',
         question: 'What kind of thing is this? What is its essence and purpose?',
         description: 'The systematic analyzer who creates order through logical categorization.',
-        position: { x: 4.24, y: 3, z: 0 },
+        position: { x: 3.54, y: 1, z: 3.54 },
         color: 0x4169E1,
         emissive: 0x4169E1,
         geometry: 'box',
@@ -41,7 +41,7 @@ const COUNCIL_DATA = [
         role: 'Synthesis & Connection',
         question: 'How does this connect to everything else? What patterns emerge?',
         description: 'The universal connector who sees the hidden relationships between all things.',
-        position: { x: -4.24, y: 3, z: 0 },
+        position: { x: 0, y: 1, z: 5 },
         color: 0xFF6347,
         emissive: 0xFF6347,
         geometry: 'icosahedron',
@@ -55,7 +55,7 @@ const COUNCIL_DATA = [
         role: 'Pure Observation',
         question: 'What do I observe without judgment, theory, or assumption?',
         description: 'The precise observer who sees reality as it is, free from preconceptions.',
-        position: { x: 5, y: 0, z: 0 },
+        position: { x: -3.54, y: 1, z: 3.54 },
         color: 0x20B2AA,
         emissive: 0x20B2AA,
         geometry: 'tetrahedron',
@@ -69,7 +69,7 @@ const COUNCIL_DATA = [
         role: 'Simplification & Essence',
         question: 'How can I explain this simply? What is the core essence?',
         description: 'The simplifier who strips away complexity to reveal fundamental truth.',
-        position: { x: -5, y: 0, z: 0 },
+        position: { x: -5, y: 1, z: 0 },
         color: 0x32CD32,
         emissive: 0x32CD32,
         geometry: 'dodecahedron',
@@ -83,7 +83,7 @@ const COUNCIL_DATA = [
         role: 'Strategic Decision',
         question: 'What action achieves the goal most effectively?',
         description: 'The pragmatic strategist who navigates reality to achieve desired outcomes.',
-        position: { x: 3, y: -3, z: 0 },
+        position: { x: -3.54, y: 1, z: -3.54 },
         color: 0xDC143C,
         emissive: 0xDC143C,
         geometry: 'diamond',
@@ -97,7 +97,7 @@ const COUNCIL_DATA = [
         role: 'Execution & Iteration',
         question: 'What is the smallest step I can take right now?',
         description: 'The relentless executor who turns ideas into reality through persistent action.',
-        position: { x: -3, y: -3, z: 0 },
+        position: { x: 0, y: 1, z: -5 },
         color: 0xFFA500,
         emissive: 0xFFA500,
         geometry: 'cone',
@@ -111,7 +111,7 @@ const COUNCIL_DATA = [
         role: 'Reflection & Wisdom',
         question: 'What did I truly learn? What questions remain?',
         description: 'The wise reflector who integrates experience into deeper understanding.',
-        position: { x: 0, y: -6, z: 0 },
+        position: { x: 3.54, y: 1, z: -3.54 },
         color: 0x9370DB,
         emissive: 0x9370DB,
         geometry: 'sphere',
@@ -121,8 +121,8 @@ const COUNCIL_DATA = [
     }
 ];
 
-// Sacred geometry connections (Flower of Life pattern)
-const SACRED_CONNECTIONS = [
+// Connection lines between thinkers
+const CONNECTIONS = [
     // Center connections (all to void)
     ...COUNCIL_DATA.map(member => ({ from: 'center', to: member.id, type: 'radial' })),
     
@@ -218,7 +218,7 @@ const INVOCATION_SEQUENCE = [
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         COUNCIL_DATA,
-        SACRED_CONNECTIONS,
+        CONNECTIONS,
         LAYERS,
         ANIMATION_PRESETS,
         INVOCATION_SEQUENCE
