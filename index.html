@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyndCouncil 3D Sacred Temple</title>
+    <title>MyndCouncil 3D Council Hall</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="loading" id="loading">
         <div class="loading-spinner">🏛️</div>
-        <div class="loading-text">CONSTRUCTING SACRED SPACE</div>
+        <div class="loading-text">PREPARING COUNCIL HALL</div>
         <div class="loading-subtext">Invoking the Council...</div>
     </div>
     
@@ -17,13 +17,13 @@
     
     <div id="ui">
         <h2>MYNDCOUNCIL</h2>
-        <p><strong>The Sacred Temple of Thought</strong></p>
+        <p><strong>The Council Hall of Thought</strong></p>
         <p class="description">Seven thinkers await your consultation in this living architecture of consciousness.</p>
         
         <div class="controls">
             <div class="control-item">
                 <span class="control-icon">🖱️</span>
-                <span>Drag to rotate temple</span>
+                <span>Drag to rotate hall</span>
             </div>
             <div class="control-item">
                 <span class="control-icon">📍</span>
@@ -41,7 +41,7 @@
         
         <div class="button-group">
             <button onclick="toggleParticles()">✨ TOGGLE THOUGHT PARTICLES</button>
-            <button onclick="toggleConnections()">🔗 TOGGLE SACRED GEOMETRY</button>
+            <button onclick="toggleConnections()">🔗 TOGGLE CONNECTIONS</button>
             <button onclick="toggleAnimation()">🌊 TOGGLE ANIMATIONS</button>
             <button onclick="activateAllThinkers()">🏛️ SUMMON FULL COUNCIL</button>
             <button onclick="resetView()">🎯 RESET VIEW</button>
@@ -61,6 +61,7 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/controls/PointerLockControls.js"></script>
     <script src="js/council-data.js"></script>
     <script src="js/scene-manager.js"></script>
     <script src="js/interaction-manager.js"></script>

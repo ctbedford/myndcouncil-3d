@@ -1,7 +1,7 @@
 {
   "name": "myndcouncil-3d",
   "version": "1.0.0",
-  "description": "A stunning 3D visualization of the MyndCouncil - your personal council of great thinkers rendered as a living, breathing sacred temple in Three.js.",
+  "description": "A stunning 3D visualization of the MyndCouncil - your personal council of great thinkers gathered in a dynamic 3D council hall built with Three.js.",
   "main": "index.html",
   "scripts": {
     "start": "npx serve . -p 3000",
@@ -20,7 +20,6 @@
     "3d",
     "visualization",
     "three.js",
-    "sacred-geometry",
     "philosophy",
     "council",
     "thinkers",

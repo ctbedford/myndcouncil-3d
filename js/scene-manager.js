@@ -28,17 +28,17 @@ class SceneManager {
         this.createCamera();
         this.createRenderer(canvas);
         this.createLights();
-        this.createSacredFloor();
+        this.createHallFloor();
+        this.createTable();
         this.createCenterVoid();
         this.createCouncilMembers();
         this.createConnections();
         this.createParticleSystem();
-        this.createAmbientElements();
         
         // Setup performance monitoring
         this.setupPerformanceMonitoring();
         
-        console.log('🏛️ Sacred Temple initialized with', this.councilMembers.length, 'council members');
+        console.log('🏛️ Council Hall initialized with', this.councilMembers.length, 'council members');
     }
 
     createScene() {
@@ -110,51 +110,27 @@ class SceneManager {
         });
     }
 
-    createSacredFloor() {
-        // Main floor
-        const floorGeometry = new THREE.CircleGeometry(15, 64);
+    createHallFloor() {
+        const floorGeometry = new THREE.PlaneGeometry(40, 40);
         const floorMaterial = new THREE.MeshStandardMaterial({
-            color: 0x0a0a0a,
-            metalness: 0.8,
-            roughness: 0.2,
-            transparent: true,
-            opacity: 0.9
+            color: 0x222222,
+            metalness: 0.4,
+            roughness: 0.6
         });
         const floor = new THREE.Mesh(floorGeometry, floorMaterial);
         floor.rotation.x = -Math.PI / 2;
-        floor.position.y = -8;
+        floor.position.y = -1;
         floor.receiveShadow = true;
         this.scene.add(floor);
-
-        // Sacred geometry patterns
-        this.createSacredPatterns();
     }
 
-    createSacredPatterns() {
-        // Flower of Life base pattern
-        const patterns = [
-            { radius: 6, segments: 6, opacity: 0.15, color: 0xFFD700 },
-            { radius: 9, segments: 8, opacity: 0.1, color: 0x4169E1 },
-            { radius: 12, segments: 12, opacity: 0.08, color: 0xFFFFFF }
-        ];
-
-        patterns.forEach(pattern => {
-            const patternGeometry = new THREE.RingGeometry(
-                pattern.radius - 0.5, 
-                pattern.radius + 0.5, 
-                pattern.segments
-            );
-            const patternMaterial = new THREE.MeshBasicMaterial({
-                color: pattern.color,
-                transparent: true,
-                opacity: pattern.opacity,
-                side: THREE.DoubleSide
-            });
-            const patternMesh = new THREE.Mesh(patternGeometry, patternMaterial);
-            patternMesh.rotation.x = -Math.PI / 2;
-            patternMesh.position.y = -7.8;
-            this.scene.add(patternMesh);
-        });
+    createTable() {
+        const tableGeometry = new THREE.CylinderGeometry(6, 6, 0.6, 32);
+        const tableMaterial = new THREE.MeshStandardMaterial({ color: 0x333333 });
+        const table = new THREE.Mesh(tableGeometry, tableMaterial);
+        table.position.y = 0;
+        table.receiveShadow = true;
+        this.scene.add(table);
     }
 
     createCenterVoid() {
@@ -237,6 +213,11 @@ class SceneManager {
         // Add particle trail emitter
         this.createMemberParticleEmitter(mesh);
 
+        // Add floating label above thinker
+        const label = this.createLabelSprite(memberData);
+        label.position.y = memberData.scale + 1.2;
+        mesh.add(label);
+
         return mesh;
     }
 
@@ -302,9 +283,31 @@ class SceneManager {
         memberMesh.add(particles);
     }
 
+    createLabelSprite(memberData) {
+        const canvas = document.createElement('canvas');
+        canvas.width = 256;
+        canvas.height = 64;
+        const context = canvas.getContext('2d');
+
+        context.fillStyle = 'rgba(0, 0, 0, 0.6)';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        context.font = '32px Arial';
+        context.fillStyle = '#FFD700';
+        context.textAlign = 'center';
+        context.fillText(memberData.name, canvas.width / 2, 40);
+
+        const texture = new THREE.CanvasTexture(canvas);
+        const material = new THREE.SpriteMaterial({ map: texture, transparent: true });
+        const sprite = new THREE.Sprite(material);
+        sprite.scale.set(4, 1, 1);
+
+        return sprite;
+    }
+
     createConnections() {
-        // Create sacred geometry connections
-        SACRED_CONNECTIONS.forEach(connection => {
+        // Create connection lines
+        CONNECTIONS.forEach(connection => {
             this.createConnection(connection);
         });
     }
@@ -402,7 +405,7 @@ class SceneManager {
     }
 
     createAmbientElements() {
-        // Rotating sacred rings
+        // Legacy rotating rings (unused in hall mode)
         const ringConfigs = [
             { radius: 12, tube: 0.1, segments: 64, color: 0xffffff, opacity: 0.1 },
             { radius: 16, tube: 0.05, segments: 32, color: 0xFFD700, opacity: 0.08 },

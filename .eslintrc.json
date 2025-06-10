@@ -11,7 +11,7 @@
   "globals": {
     "THREE": "readonly",
     "COUNCIL_DATA": "readonly",
-    "SACRED_CONNECTIONS": "readonly",
+    "CONNECTIONS": "readonly",
     "LAYERS": "readonly",
     "ANIMATION_PRESETS": "readonly",
     "INVOCATION_SEQUENCE": "readonly"

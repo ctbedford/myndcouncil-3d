@@ -21,6 +21,12 @@ class InteractionManager {
         this.targetRotationY = 0;
         this.targetDistance = 20;
         this.currentDistance = 20;
+
+        // First-person controls
+        this.firstPersonMode = false;
+        this.fpControls = new THREE.PointerLockControls(this.sceneManager.getCamera(), document.body);
+        this.moveState = { forward: false, backward: false, left: false, right: false };
+        this.lastMoveTime = performance.now();
         
         // UI state
         this.showParticles = true;
@@ -50,12 +56,14 @@ class InteractionManager {
         
         // Keyboard shortcuts
         document.addEventListener('keydown', this.onKeyDown.bind(this));
+        document.addEventListener('keyup', this.onKeyUp.bind(this));
         
         // Prevent context menu on right-click
         canvas.addEventListener('contextmenu', (e) => e.preventDefault());
     }
 
     onMouseDown(event) {
+        if (this.firstPersonMode) return;
         if (event.button === 0) { // Left click
             this.isMouseDown = true;
             this.mouseX = event.clientX;
@@ -65,11 +73,14 @@ class InteractionManager {
     }
 
     onMouseUp(event) {
+        if (this.firstPersonMode) return;
         this.isMouseDown = false;
         document.body.style.cursor = 'grab';
     }
 
     onMouseMove(event) {
+        if (this.firstPersonMode) return;
+
         // Update mouse position for raycasting
         this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
         this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
@@ -95,10 +106,14 @@ class InteractionManager {
 
     onMouseClick(event) {
         if (this.isMouseDown) return; // Ignore clicks during drag
-        
+
         // Update mouse position
-        this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-        this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+        if (this.firstPersonMode) {
+            this.mouse.set(0, 0);
+        } else {
+            this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+        }
         
         // Raycast to find clicked objects
         this.raycaster.setFromCamera(this.mouse, this.sceneManager.getCamera());
@@ -113,8 +128,9 @@ class InteractionManager {
     }
 
     onMouseWheel(event) {
+        if (this.firstPersonMode) return;
         event.preventDefault();
-        
+
         this.targetDistance += event.deltaY * 0.01;
         this.targetDistance = Math.max(8, Math.min(50, this.targetDistance));
     }
@@ -202,10 +218,33 @@ class InteractionManager {
             case 'KeyR':
                 this.resetView();
                 break;
-            case 'Escape':
-                this.deselectThinker();
+            case 'KeyF':
+                this.toggleFirstPerson();
+                break;
+            default:
+                if (event.code.startsWith('Digit')) {
+                    const index = parseInt(event.code.slice(5), 10) - 1;
+                    const members = this.sceneManager.getCouncilMembers();
+                    if (members[index]) {
+                        this.selectThinker(members[index]);
+                    }
+                }
+                if (['KeyW','ArrowUp'].includes(event.code)) this.moveState.forward = true;
+                if (['KeyS','ArrowDown'].includes(event.code)) this.moveState.backward = true;
+                if (['KeyA','ArrowLeft'].includes(event.code)) this.moveState.left = true;
+                if (['KeyD','ArrowRight'].includes(event.code)) this.moveState.right = true;
+                if (event.code === 'Escape') {
+                    this.deselectThinker();
+                }
                 break;
         }
+    }
+
+    onKeyUp(event) {
+        if (['KeyW','ArrowUp'].includes(event.code)) this.moveState.forward = false;
+        if (['KeyS','ArrowDown'].includes(event.code)) this.moveState.backward = false;
+        if (['KeyA','ArrowLeft'].includes(event.code)) this.moveState.left = false;
+        if (['KeyD','ArrowRight'].includes(event.code)) this.moveState.right = false;
     }
 
     onWindowResize() {
@@ -213,6 +252,7 @@ class InteractionManager {
     }
 
     checkHover() {
+        if (this.firstPersonMode) return;
         this.raycaster.setFromCamera(this.mouse, this.sceneManager.getCamera());
         const intersects = this.raycaster.intersectObjects(this.sceneManager.getCouncilMembers());
         
@@ -358,15 +398,26 @@ class InteractionManager {
     }
 
     updateCamera() {
-        // Smooth camera movement
-        this.currentDistance += (this.targetDistance - this.currentDistance) * 0.1;
-        
         const camera = this.sceneManager.getCamera();
-        camera.position.x = this.currentDistance * Math.sin(this.targetRotationY) * Math.cos(this.targetRotationX);
-        camera.position.y = this.currentDistance * Math.sin(this.targetRotationX);
-        camera.position.z = this.currentDistance * Math.cos(this.targetRotationY) * Math.cos(this.targetRotationX);
-        
-        camera.lookAt(0, 0, 0);
+
+        if (this.firstPersonMode) {
+            const now = performance.now();
+            const delta = (now - this.lastMoveTime) / 1000;
+            this.lastMoveTime = now;
+            const speed = 5 * delta;
+
+            if (this.moveState.forward) this.fpControls.moveForward(speed);
+            if (this.moveState.backward) this.fpControls.moveForward(-speed);
+            if (this.moveState.left) this.fpControls.moveRight(-speed);
+            if (this.moveState.right) this.fpControls.moveRight(speed);
+        } else {
+            // Smooth camera movement
+            this.currentDistance += (this.targetDistance - this.currentDistance) * 0.1;
+            camera.position.x = this.currentDistance * Math.sin(this.targetRotationY) * Math.cos(this.targetRotationX);
+            camera.position.y = this.currentDistance * Math.sin(this.targetRotationX);
+            camera.position.z = this.currentDistance * Math.cos(this.targetRotationY) * Math.cos(this.targetRotationX);
+            camera.lookAt(0, 0, 0);
+        }
     }
 
     // UI Control Functions
@@ -419,6 +470,18 @@ class InteractionManager {
         setTimeout(() => {
             console.log('🌟 The full council stands ready for your consultation.');
         }, 4000);
+    }
+
+    toggleFirstPerson() {
+        this.firstPersonMode = !this.firstPersonMode;
+        if (this.firstPersonMode) {
+            this.fpControls.lock();
+            document.body.style.cursor = 'none';
+        } else {
+            this.fpControls.unlock();
+            document.body.style.cursor = 'grab';
+        }
+        console.log('🚶 First-person mode:', this.firstPersonMode ? 'ON' : 'OFF');
     }
 
     resetView() {
