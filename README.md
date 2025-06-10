@@ -240,7 +240,7 @@ When you consult a thinker, you're not just clicking a button - you're **invokin
 - **VR Support** - WebXR for immersive consultation
 - **AI Integration** - Dynamic responses from each thinker
 - **Constellation Patterns** - Time-based geometric transformations
-- **Collaborative Councils** - Multi-user shared temples
+- **Collaborative Councils** - Multi-user shared halls
 - **Personal Thinker Creation** - Upload your own advisors
 - **Sacred Time Cycles** - Different arrangements for different occasions
 
