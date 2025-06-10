@@ -1,7 +1,7 @@
 /**
  * ==========================================
  * MYNDCOUNCIL 3D MAIN APPLICATION
- * Sacred Temple Entry Point
+ * Council Hall Entry Point
  * ==========================================
  */
 
@@ -13,7 +13,7 @@ class MyndCouncil3D {
         this.isInitialized = false;
         this.animationId = null;
         
-        console.log('🏛️ MyndCouncil 3D Sacred Temple initializing...');
+        console.log('🏛️ MyndCouncil 3D Council Hall initializing...');
     }
 
     async init() {
@@ -43,7 +43,7 @@ class MyndCouncil3D {
             this.showWelcomeMessage();
             
             this.isInitialized = true;
-            console.log('🌟 Sacred Temple fully initialized and ready for consultation');
+            console.log('🌟 Council Hall fully initialized and ready for consultation');
             
         } catch (error) {
             console.error('❌ Failed to initialize MyndCouncil 3D:', error);
@@ -133,7 +133,7 @@ class MyndCouncil3D {
         console.log(`
 🏛️ ================================
    WELCOME TO MYNDCOUNCIL 3D
-   Sacred Temple of Thought
+   Council Hall of Thought
 ================================
 
 ✨ Your personal council of great thinkers awaits...
@@ -148,7 +148,7 @@ class MyndCouncil3D {
 🌳 Socrates - Reflection and wisdom
 
 🖱️ Controls:
-• Drag to rotate the temple
+• Drag to rotate the hall
 • Scroll to zoom in/out
 • Click on any thinker to consult them
 • Use buttons in the control panel
@@ -312,8 +312,8 @@ console.log(`
 • window.interactionManager.activateAllThinkers() - Summon council
 • window.animationManager.setAnimationPreset('meditation'|'active'|'contemplation')
 
-%cBuilt with Three.js and sacred geometry principles.
-May your code be as elegant as the eternal forms.
+%cBuilt with Three.js to power your council hall.
+May your code be as elegant as your insights.
 `, 
 'color: #FFD700; font-size: 16px; font-weight: bold;',
 'color: #4169E1; font-size: 12px;',
