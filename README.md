@@ -24,6 +24,7 @@ A stunning 3D visualization of the MyndCouncil - your personal council of great 
 - **Thinker Consultation** - Click on any orb to consult that thinker
 - **Floating Labels** - Each thinker displays a name tag above their orb
 - **Glass UI Panels** - Translucent controls with subtle blur
+- **First-Person Walking** - Press **F** to explore the hall with WASD/arrow keys
 - **Thought Flow Animation** - Particles flow from thinker to center when selected
 - **Full Council Summoning** - Activate all thinkers in sequence
 - **Real-time Toggles** - Control particles, connections, and animations
@@ -90,6 +91,7 @@ If you use VSCode:
 - **R** - Reset camera view to default
 - **ESC** - Deselect current thinker
 - **1-8** - Quickly select thinkers by number
+- **F** - Toggle first-person walking mode
 
 ### **UI Buttons**
 - **✨ Toggle Thought Particles** - Show/hide floating consciousness
@@ -238,7 +240,7 @@ When you consult a thinker, you're not just clicking a button - you're **invokin
 - **VR Support** - WebXR for immersive consultation
 - **AI Integration** - Dynamic responses from each thinker
 - **Constellation Patterns** - Time-based geometric transformations
-- **Collaborative Councils** - Multi-user shared temples
+- **Collaborative Councils** - Multi-user shared halls
 - **Personal Thinker Creation** - Upload your own advisors
 - **Sacred Time Cycles** - Different arrangements for different occasions
 
