@@ -36,13 +36,12 @@
   },
   "homepage": "https://ctbedford.github.io/myndcouncil-3d",
   "devDependencies": {
-    "eslint": "^8.0.0",
-    "prettier": "^3.0.0",
+    "eslint": "^8.57.1",
+    "gh-pages": "^6.3.0",
     "live-server": "^1.2.2",
-    "serve": "^14.2.0",
-    "gh-pages": "^6.0.0"
+    "prettier": "^3.5.3",
+    "serve": "^14.2.4"
   },
-  "dependencies": {},
   "engines": {
     "node": ">=16.0.0"
   },
@@ -52,4 +51,3 @@
     "not dead"
   ]
 }
-
