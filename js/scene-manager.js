@@ -237,6 +237,11 @@ class SceneManager {
         // Add particle trail emitter
         this.createMemberParticleEmitter(mesh);
 
+        // Add floating label above thinker
+        const label = this.createLabelSprite(memberData);
+        label.position.y = memberData.scale + 1.2;
+        mesh.add(label);
+
         return mesh;
     }
 
@@ -300,6 +305,28 @@ class SceneManager {
         particles.userData.isEmitter = true;
         particles.userData.lifetimes = new Array(particleCount).fill(0);
         memberMesh.add(particles);
+    }
+
+    createLabelSprite(memberData) {
+        const canvas = document.createElement('canvas');
+        canvas.width = 256;
+        canvas.height = 64;
+        const context = canvas.getContext('2d');
+
+        context.fillStyle = 'rgba(0, 0, 0, 0.6)';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        context.font = '32px Arial';
+        context.fillStyle = '#FFD700';
+        context.textAlign = 'center';
+        context.fillText(memberData.name, canvas.width / 2, 40);
+
+        const texture = new THREE.CanvasTexture(canvas);
+        const material = new THREE.SpriteMaterial({ map: texture, transparent: true });
+        const sprite = new THREE.Sprite(material);
+        sprite.scale.set(4, 1, 1);
+
+        return sprite;
     }
 
     createConnections() {

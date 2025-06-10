@@ -202,8 +202,17 @@ class InteractionManager {
             case 'KeyR':
                 this.resetView();
                 break;
-            case 'Escape':
-                this.deselectThinker();
+            default:
+                if (event.code.startsWith('Digit')) {
+                    const index = parseInt(event.code.slice(5), 10) - 1;
+                    const members = this.sceneManager.getCouncilMembers();
+                    if (members[index]) {
+                        this.selectThinker(members[index]);
+                    }
+                }
+                if (event.code === 'Escape') {
+                    this.deselectThinker();
+                }
                 break;
         }
     }
